@@ -9,7 +9,7 @@ def format_data(account):
   country = account["country"]
   return f"{name}, {description}, from {country}."
 
-def get_followers(account)
+def get_followers(account):
   return account['follower_count']
 
 should_restart = True
@@ -23,7 +23,7 @@ while should_restart:
   if score != 0:
     print(f"You're right! Current score: {score}")
   
-  print(f"Compare A: {format_data(account_a).")
+  print(f"Compare A: {format_data(account_a)}.")
   
   print(vs)
   

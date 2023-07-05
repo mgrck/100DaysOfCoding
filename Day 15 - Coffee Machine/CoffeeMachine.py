@@ -23,6 +23,13 @@ def add_money():
 def calculate_change(type_coffee):
     return round(calculate_money_inserted() - MENU[type_coffee]['cost'],2)
 
+def is_resource_sufficient(order_ingredients):
+    for item in order_ingredients:
+        if order_ingredients[item] > resources[item]:
+            print(f"Sorry there is not enough {item}.")
+            return False
+    return True
+
 another_customer = True
 while another_customer:
     question = input("What would you like? (espresso/latte/cappuccino): ").lower()
@@ -31,13 +38,7 @@ while another_customer:
     elif question == 'off':
         another_customer = False
     else:
-        if resources["water"] < MENU[question]['ingredients']["water"]:
-            print("Sorry there is not enough water.")
-        elif resources["milk"] < MENU[question]['ingredients']["milk"]:
-            print("Sorry there is not enough milk.")
-        elif resources["coffee"] < MENU[question]['ingredients']["coffee"]:
-            print("Sorry there is not enough coffee.")
-        else:
+        if is_resource_sufficient(MENU[question]['ingredients']):
             print("Please insert coins.")
             quarters = int(input("how many quarters? "))
             dimes = int(input("how many dimes? "))
